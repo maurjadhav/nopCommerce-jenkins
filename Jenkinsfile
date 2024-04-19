@@ -19,6 +19,14 @@ pipeline {
                     outputDirectory: 'published',
                     project: 'src/Presentation/Nop.Web/Nop.Web.csproj'
             }
+            post {
+                success {
+                    zip zipFile: 'nop.web.zip',
+                      archive: true,
+                      dir: './published',
+                      overwrite: true
+                }
+            }
         }
 
     }

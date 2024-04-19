@@ -22,9 +22,9 @@ pipeline {
             post {
                 success {
                     zip zipFile: 'nop.web.zip',
-                      archive: true,
+                      archive: True,
                       dir: './published',
-                      overwrite: true
+                      overwrite: True
                 }
             }
         }

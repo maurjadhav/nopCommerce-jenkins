@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'nop'
+        label 'dotnet'
     }
     triggers {
         pollSCM('* * * * *')
@@ -8,25 +8,14 @@ pipeline {
     stages {
         stage('scm') {
             steps {
-                git url: 'https://github.com/dummyrepos/nopCommerceApr24.git',
+                git url: 'https://github.com/maurjadhav/nopCommerce-jenkins.git',
                     branch: 'develop'
             }
         }
         stage('build') {
             steps {
-                //sh 'dotnet publish -o published/ -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
-                dotnetPublish configuration: 'Release',
-                    outputDirectory: 'published',
-                    project: 'src/Presentation/Nop.Web/Nop.Web.csproj'
+                sh 'dotnet publish -o published/ -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
 
-            }
-            post {
-                success {
-                    zip zipFile: 'nop.web.zip',
-                      archive: true,
-                      dir: './published',
-                      overwrite: true
-                }
             }
         }
 

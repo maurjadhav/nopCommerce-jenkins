@@ -23,7 +23,6 @@ pipeline {
                 success {
                     archiveArtifacts artifacts: 'published/**',
                       fingerprint: true
-                      overwrite: true
                 }
             }
         }

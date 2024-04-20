@@ -14,6 +14,9 @@ pipeline {
         }
         stage('build') {
             steps {
+                mail bcc: '', body: 'Build started', cc: '', from: '', replyTo: '',
+                    subject: "Build started for ${JOB_BASE_NAME} with Build Id ${BUILD_ID}", to: 'all@learnigthoughts.io'
+
                 sh 'dotnet publish -o published/ -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
 //                dotnetPublish configuration: 'Release',
 //                    outputDirectory: 'published',

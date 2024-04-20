@@ -21,8 +21,8 @@ pipeline {
             }
             post {
                 success {
-                    zip zipFile: 'nop.web.zip',
-                      dir: './published',
+                    archiveArtifacts artifacts: 'published/**',
+                      fingerprint: true
                       overwrite: true
                 }
             }
